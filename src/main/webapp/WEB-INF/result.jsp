@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="C"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,9 +11,9 @@
  <c:choose>
     <c:when test="${! empty film}">
     <ul>
-		<li><h5>${film8}</h5></li> 
-        <li>${film8.title}</li>
-        <li>${film8.description}</li>
+		<li><h5>${film}</h5></li> 
+        <li>${film.title}</li>
+        <li>${film.description}</li>
       </ul>
 </c:when>
  <c:otherwise>
