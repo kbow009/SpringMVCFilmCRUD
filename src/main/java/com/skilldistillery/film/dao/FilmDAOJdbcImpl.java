@@ -108,7 +108,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 					+ "rating FROM film JOIN language ON film.language_id = language.id  WHERE description LIKE ? OR title LIKE ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, "%" + filmKeyword + "%");
-			stmt.setString(2, filmKeyword + "%");
+			stmt.setString(2, "%" + filmKeyword + "%");
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
 				Film film = new Film();
