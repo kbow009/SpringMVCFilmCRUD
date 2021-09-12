@@ -47,8 +47,8 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 				film.setRating(rs.getString("rating"));
 				film.setSpecialFeatures(rs.getString("special_features"));
 				film.setActors(findActorsByFilmId(filmId));
-				film.setLanguage(rs.getString("language"));
-				film.setCategory(rs.getString("category"));
+				film.setLanguage(rs.getString("name"));
+				film.setCategories(getCategory(filmId));
 
 			} else if (!rs.next()) {
 				System.out.println("No data found");
@@ -63,6 +63,28 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 		}
 
 		return film;
+	}
+
+	public List<String> getCategory(int id) {
+		Film film = null;
+		List<String> categories = new ArrayList<>();
+		Connection conn;
+		try {
+			conn = DriverManager.getConnection(URL, user, pass);
+			String sql = "SELECT category.* FROM category JOIN film_category  ON  category.id = film_category.film_id JOIN film ON film_category.film_id = film.id WHERE film.id = ?;";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				categories.add(rs.getString("name"));
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return categories;
 	}
 
 	private List<Actor> findActorsByFilmId(int filmId) {
@@ -136,7 +158,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 
 	}
 
-	@Override
+	
 	public String findFilmLanguage(int languageId) {
 		String language = null;
 
@@ -212,7 +234,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 			stmt.setString(11, film.getSpecialFeatures());
 
 			stmt.setString(12, film.getLanguage());
-			stmt.setString(13, film.getCategory());
+
 			int updateCount = stmt.executeUpdate();
 			if (updateCount == 1) {
 				ResultSet keys = stmt.getGeneratedKeys();
@@ -268,8 +290,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 			stmt.setString(10, film.getRating());
 			stmt.setString(11, film.getSpecialFeatures());
 
-			stmt.setString(12, film.getLanguage());
-			stmt.setString(13, film.getCategory());
+			
 			int updateCount = stmt.executeUpdate();
 			if (updateCount == 1) {
 
