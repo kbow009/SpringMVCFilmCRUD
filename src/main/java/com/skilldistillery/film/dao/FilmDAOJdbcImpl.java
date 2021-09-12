@@ -14,8 +14,7 @@ import com.skilldistillery.film.entities.Actor;
 import com.skilldistillery.film.entities.Film;
 
 public class FilmDAOJdbcImpl implements FilmDAO {
-//	private static final String URL = "jdbc:mysql://localhost:3306/sdvid?useSSL=false";
-	private static final String URL = "jdbc:mysql://localhost:3306/sdvid?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=US/Mountain";
+	private static final String URL = "jdbc:mysql://localhost:3306/sdvid?useSSL=false";
 	private String user = "student";
 	private String pass = "student";
 
@@ -27,8 +26,8 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 	public Film findById(int filmId) {
 		Film film = null;
 
+		Connection conn;
 		try {
-			Connection conn;
 			conn = DriverManager.getConnection(URL, user, pass);
 			String sql = "SELECT film.id, title, description, release_year, language_id, rental_duration,"
 					+ "rental_rate, length, replacement_cost, rating, special_features, category.name FROM film JOIN language ON film.language_id = language.id"
