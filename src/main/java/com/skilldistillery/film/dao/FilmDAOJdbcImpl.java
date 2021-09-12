@@ -29,8 +29,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 		Connection conn;
 		try {
 			conn = DriverManager.getConnection(URL, user, pass);
-			String sql = "SELECT film.id, title, description, release_year, language_id, rental_duration, "
-					+ "rental_rate, length, replacement_cost, rating, special_features FROM film JOIN language ON film.language_id = language.id  WHERE film.id = ?";
+			String sql = "SELECT film.id, title, description, release_year, language_id, rental_duration,rental_rate, length, replacement_cost, rating, special_features, category.name FROM film JOIN language ON film.language_id = language.id JOIN film_category ON film.id = film_category.film_id JOIN category ON category.id = film_category.category_id WHERE film.id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, filmId);
 			ResultSet rs = stmt.executeQuery();
@@ -109,7 +108,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 					+ "rating FROM film JOIN language ON film.language_id = language.id  WHERE description LIKE ? OR title LIKE ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, "%" + filmKeyword + "%");
-			stmt.setString(2, filmKeyword + "%");
+			stmt.setString(2, "%" + filmKeyword + "%");
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
 				Film film = new Film();
