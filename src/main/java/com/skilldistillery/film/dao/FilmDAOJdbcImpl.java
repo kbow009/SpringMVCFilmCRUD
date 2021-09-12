@@ -6,7 +6,6 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 
 	@Override
 	public Film findById(int filmId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
