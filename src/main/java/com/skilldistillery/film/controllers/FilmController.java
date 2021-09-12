@@ -14,16 +14,14 @@ import com.skilldistillery.film.entities.Film;
 public class FilmController {
 	@Autowired
 	private FilmDAO filmDao;
-	
+
 	public void setDAO(FilmDAO filmDao) {
 		this.filmDao = filmDao;
 	}
-	
+
 //	@RequestMapping(path = {"/", "findFilm.do"}, method=RequestMethod.GET )
 //	public String home() {
-		
-		
-		
+
 //		return "WEB-INF/home.jsp";
 //	}
 //	@RequestMapping(path = {"/", "findFilm.do"}, params="id", method=RequestMethod.GET )
@@ -35,12 +33,11 @@ public class FilmController {
 //	}
 //	}
 
-	
 	// need jsp for new film here.
-	
-	
+
 //	
-	@RequestMapping(path = {"/", "findFilm.do"}, params="id", method=RequestMethod.GET )
+
+	@RequestMapping(path = { "/", "findFilm.do" }, params = "id", method = RequestMethod.GET)
 	public ModelAndView findFilmByID(String id) {
 		ModelAndView mv = new ModelAndView();
 		int id_int = Integer.parseInt(id);
@@ -57,13 +54,5 @@ public class FilmController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/result.jsp");
 		return mv;
-	}}
-
-	
-	
-	
-	
-	
-	
-
-
+	}
+}
