@@ -14,56 +14,43 @@ import com.skilldistillery.film.entities.Film;
 public class FilmController {
 	@Autowired
 	private FilmDAO filmDao;
-	
+
 	public void setDAO(FilmDAO filmDao) {
 		this.filmDao = filmDao;
 	}
-	
+
 //	@RequestMapping(path = {"/", "findFilm.do"}, method=RequestMethod.GET )
 //	public String home() {
-		
-		
-		
+
 //		return "WEB-INF/home.jsp";
 //	}
-	@RequestMapping(path = "newFilm.do", method=RequestMethod.POST)
-	  public ModelAndView addFilm(Film film) {
-	    ModelAndView mv = new ModelAndView();
-	    mv.addObject("film",film);
-	    mv.setViewName("WEB-INF/result.jsp");
-	    return mv;
-	}
+//	@RequestMapping(path = {"/", "findFilm.do"}, params="id", method=RequestMethod.GET )
+//	  public ModelAndView newfilm(Film film) {
+//		ModelAndView mv = new ModelAndView();
+//	    mv.addObject("film",film);
+//	    mv.setViewName("WEB-INF/result.jsp");
+//	    return mv;
+//	}
+//	}
 
-	
 	// need jsp for new film here.
-	
-	
+
 //	
-	@RequestMapping(path = "findFilm.do", params ="id", method=RequestMethod.GET)
-	public ModelAndView findByID(int id) {
+	@RequestMapping(path = { "/", "findFilm.do" }, params = "id", method = RequestMethod.GET)
+	public ModelAndView findFilmByID(String id) {
 		ModelAndView mv = new ModelAndView();
-		
-		Film f = filmDao.findById(id);
+		int id_int = Integer.parseInt(id);
+		Film f = filmDao.findById(id_int);
 		mv.addObject("film", f);
 		mv.setViewName("WEB-INF/result.jsp");
 		return mv;
 	}
-//}
 
-	@RequestMapping(path = "deleteFilm.do", params = "id", method = RequestMethod.GET)
-	public ModelAndView deleteFilm(int id) {
+	@RequestMapping(path = "addFilm.do", method = RequestMethod.POST)
+	public ModelAndView addFilm(Film film) {
+		filmDao.addFilm(film);
 		ModelAndView mv = new ModelAndView();
-//		Film f = filmDao.deleteFilm(id);
-//		mv.addObject("film", f);
-		mv.setViewName("result");
+		mv.setViewName("WEB-INF/result.jsp");
 		return mv;
-	}}
-
-	
-	
-	
-	
-	
-	
-
-
+	}
+}
