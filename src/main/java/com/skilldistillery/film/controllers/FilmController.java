@@ -47,22 +47,21 @@ public class FilmController {
 		return mv;
 	}
 
+	@RequestMapping(path = "newFilm.do", method = RequestMethod.POST)
+	public ModelAndView addFilm(Film film) {
+		ModelAndView mv = new ModelAndView();
+		filmDao.addFilm(film);
+		mv.addObject("film", film);
+		mv.setViewName("WEB-INF/newFilm.jsp");// newFilm.jsp*******
+		return mv;
+	}
 
-
-@RequestMapping(path = "newFilm.do", method = RequestMethod.POST)
-public ModelAndView addFilm(Film film) {
-	ModelAndView mv = new ModelAndView();
-	filmDao.addFilm(film);
-	mv.addObject("film", film);
-	mv.setViewName("WEB-INF/newFilm.jsp");//newFilm.jsp*******
-	return mv;
-}
-@RequestMapping(path = "deleteFilm.do", method = RequestMethod.POST)
-public ModelAndView deleteFilm(Film film) {
-	ModelAndView mv = new ModelAndView();
-	filmDao.deleteFilm(film);
-	mv.addObject("film", film);
-	mv.setViewName("WEB-INF/deleteFilm.jsp");//newFilm.jsp*******
-	return mv;
-}
+	@RequestMapping(path = "deleteFilm.do", method = RequestMethod.POST)
+	public ModelAndView deleteFilm(Film film) {
+		ModelAndView mv = new ModelAndView();
+		filmDao.deleteFilm(film);
+		mv.addObject("film", film);
+		mv.setViewName("WEB-INF/deleteFilm.jsp");// newFilm.jsp*******
+		return mv;
+	}
 }
