@@ -1,19 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>New State</title>
-  </head>
-  <body>
-    <form action="deleteFilm.do" method="POST">
-    <h3> Here you are able to delete a film from the database if you choose. </h3>
-      <label for="id">Enter Film ID: </label>
-      <input type="text" name="id" >
-      <br>
-      <label for="title">Enter Film Title :</label>
-      <input type="text" name="Title" >
-      <br>
-      <input type="submit" value="Delete Film">
-    </form>
-  </body>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>New Film</title>
+</head>
+<body>
+	<form action="deleteFilm.do" method="POST">
+		<h3>Enter the parameters for the film that you wish to delete below:</h3>
+		<label for="id"> Film ID: </label> <input type="text" name="id"/><br> 
+		<label for="title"> Film title: </label><input type="text" name="title"/><br>
+		<input type="submit" value="Delete Film" /><br>
+   </form>
+</body>
 </html>

@@ -9,16 +9,12 @@
 <title>Result</title>
 </head>
 <body>
-<h3> Your search returned the following result: </h3>
+<h3> The Film you chose was successfully deleted: </h3>
  <c:choose>
     <c:when test="${! empty film}">
     <ul>
-        Film Title: <li>${film.title}</li>
-        Film Description: <li>${film.description}</li>
-		Film ID: <li>${film.id}</li>
-        Film Release Year: <li>${film.releaseYear}</li>
-        Film Rating: <li>${film.rating}</li>
-        Film length: <li>${film.length}</li>
+        
+        Film ID: <li>${film.id}</li>
       </ul>
 </c:when>
  <c:otherwise>
