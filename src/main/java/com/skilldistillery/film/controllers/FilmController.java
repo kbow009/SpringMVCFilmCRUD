@@ -48,11 +48,12 @@ public class FilmController {
 	}
 
 
-	@RequestMapping(path = "addFilm.do", method = RequestMethod.POST)
+	@RequestMapping(path = "newFilm.do", method = RequestMethod.POST)
 	public ModelAndView addFilm(Film film) {
-		filmDao.addFilm(film);
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("WEB-INF/result.jsp");
+//		filmDao.addFilm(film);
+		mv.addObject("film", film);
+		mv.setViewName("WEB-INF/result.jsp");//newFilm.jsp*******
 		return mv;
 	}
 }
