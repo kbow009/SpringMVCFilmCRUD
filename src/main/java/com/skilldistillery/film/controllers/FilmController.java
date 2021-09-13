@@ -64,4 +64,5 @@ public class FilmController {
 		mv.setViewName("WEB-INF/deleteFilm.jsp");// newFilm.jsp*******
 		return mv;
 	}
+
 }
