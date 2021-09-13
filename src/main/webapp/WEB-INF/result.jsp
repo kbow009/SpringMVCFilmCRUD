@@ -9,17 +9,16 @@
 <title>Result</title>
 </head>
 <body>
+<h3> Your search returned the following result: </h3>
  <c:choose>
     <c:when test="${! empty film}">
     <ul>
-        <li>${film.getTitle()}</li>
-        <li>${film.title}</li>
-        <li>${film.description}</li>
-        <li>${film.id}</li>
-        <li>${film.releaseYear}</li>
-        <li>${film.rating}</li>
-        <li>${film.length}</li>
-        <li>${film.id}</li>
+        Film Title: <li>${film.title}</li>
+        Film Description: <li>${film.description}</li>
+		Film ID: <li>${film.id}</li>
+        Film Release Year: <li>${film.releaseYear}</li>
+        Film Rating: <li>${film.rating}</li>
+        Film length: <li>${film.length}</li>
       </ul>
 </c:when>
  <c:otherwise>
